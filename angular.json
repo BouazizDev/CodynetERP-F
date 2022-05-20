@@ -27,9 +27,17 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/assets/css/style.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/script.js",
+              "src/assets/js/jquery-3.6.0.min.js",
+              "src/assets/js/feather.min.js",
+              "src/assets/plugins/slimscroll/jquery.slimscroll.min.js",
+              "src/assets/plugins/apexchart/apexcharts.min.js",
+              "src/assets/plugins/apexchart/chart-data.js"
+            ]
           },
           "configurations": {
             "production": {

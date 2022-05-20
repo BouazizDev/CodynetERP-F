@@ -1,0 +1,130 @@
+
+
+<div class="main-wrapper">
+
+
+<div class="page-wrapper">
+<div class="content container-fluid">
+    <div class="page-header">
+        <div class="row align-items-center">
+        <div class="col">
+        <h3 class="page-title">Categories </h3>
+        <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Acceuil</a></li>
+        <li class="breadcrumb-item active">Liste des Categories</li>
+        </ul>
+        </div>
+        </div>
+        </div>
+
+<div class="card invoices-tabs-card">
+<div class="card-body card-body pt-0 pb-0">
+<div class="invoices-items-main-tabs">
+<div class="row align-items-center">
+<div class="col-lg-12 col-md-12">
+<div class="invoices-items-tabs">
+<ul>
+<li><a routerLink="/articles" >Tous les articles</a></li>
+<li><a routerLink="/categories" class="active">Categories</a></li>
+<li><a routerLink="/taxes" >Taxes</a></li>
+
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="card invoices-tabs-card">
+<div class="card-body card-body pt-0 pb-0">
+<div class="invoices-main-tabs border-0 pb-0">
+<div class="row align-items-center">
+<div class="col-lg-12 col-md-12">
+<div class="invoices-settings-btn invoices-settings-btn-one">
+<a (click)="open(content)"class="btn" data-bs-toggle="modal" data-bs-target="#add_items">
+<i data-feather="plus"></i>Ajouter categorie</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div class="card card-table">
+<div class="card-body">
+<div class="table-responsive">
+<table class="table table-stripped table-hover datatable">
+<thead class="thead-light">
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Date Added</th>
+<th class="text-end">Action</th>
+</tr>
+</thead>
+<tbody *ngFor="let categorie of categories | async">
+<tr>
+<td>
+<a  class="invoice-link">{{categorie.nom}}</a>
+</td>
+<td class="items-text">{{categorie.description}}</td>
+<td>16 Mar 2022</td>
+<td class="text-end">
+<a class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i> Modifier</a>
+<a (click)="deleteCategorie(categorie.id)"class="btn btn-sm btn-white text-danger"  ><i class="far fa-trash-alt me-1"></i>Supprimer</a>
+</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<ng-template #content let-modal>
+
+<form  #addForm="ngForm">
+    <div class="modal-content">
+        <div class="modal-header">
+        <div class="form-header text-start mb-0">
+        <h4 class="mb-0">Create New Category</h4>
+        </div>
+        
+        </div>
+        <div class="modal-body">
+        <div class="bank-inner-details">
+        <div class="row">
+        <div class="col-lg-12 col-md-12">
+        <div class="form-group">
+        <label>Category Name</label>
+        <input  ngModel name="nom" type="text" class="form-control" placeholder="Add New Item">
+        </div>
+        </div>
+        <div class="col-lg-12 col-md-12">
+        <div class="form-group">
+        <label>Category Description</label>
+        <textarea ngModel name="description"class="form-control"></textarea>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        <div class="modal-footer">
+        <div class="bank-details-btn">
+        <a (click)="modal.close('Save click')"  class="btn bank-cancel-btn me-2">Annuler</a>
+        <a (click)="onAddCategorie(addForm)" class="btn bank-save-btn">Confirmer</a>
+        
+        </div>
+        </div>
+        </div>
+</form>
+
+</ng-template>
+
+</div>
+

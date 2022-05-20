@@ -1,0 +1,184 @@
+
+<div class="main-wrapper">
+
+
+
+    <div class="page-wrapper">
+    <div class="content container-fluid">
+    
+    <div class="page-header">
+    <div class="row align-items-center">
+    <div class="col">
+    <h3 class="page-title">Articles </h3>
+    <ul class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Acceuil</a></li>
+    <li class="breadcrumb-item active">Liste des Articles</li>
+    </ul>
+    </div>
+    </div>
+    </div>
+    
+    <div class="card invoices-tabs-card">
+    <div class="card-body card-body pt-0 pb-0">
+    <div class="invoices-items-main-tabs">
+    <div class="row align-items-center">
+    <div class="col-lg-12 col-md-12">
+    <div class="invoices-items-tabs">
+    <ul>
+    <li><a routeLink="/articles" class="active">Tous les Articles</a></li>
+    <li><a routerLink="/categories">Categorie</a></li>
+    <li><a routerLink="/taxes">Taxes</a></li>
+    </ul>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="card invoices-tabs-card">
+    <div class="card-body card-body pt-0 pb-0">
+    <div class="invoices-main-tabs border-0 pb-0">
+    <div class="row align-items-center">
+    <div class="col-lg-12 col-md-12">
+    <div class="invoices-settings-btn invoices-settings-btn-one">
+    <a (click)="open(content)" class="btn" >
+    <i data-feather="plus-circle"></i> Ajouter un article
+    </a>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-sm-12">
+    <div class="card card-table">
+    <div class="card-body">
+    <div class="table-responsive">
+    <table class="table table-stripped table-hover datatable">
+    <thead class="thead-light">
+    <tr>
+    <th>Nom</th>
+    <th>Prix unitaire</th>
+    <th>Quantite</th>
+    <th>Description</th>
+    <th class="text-end">Action</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let article of articles | async">
+    <tr>
+        <td>
+            <h2 class="table-avatar">
+            <a  class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-02.jpg" alt="User Image"></a>
+            <a >{{article.nom}} <span>{{article.reference}}</span></a>
+            </h2>
+    <td class="text-primary">${{article.prixUnitaireHT}}</td>
+    <td>{{article.quantite}}</td>
+    <td class="items-text">{{article.description}}</td>
+    <td class="text-end">
+    <a  class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i> Modifier</a>
+    <a class="btn btn-sm btn-white text-danger" (click)="deleteArticle(article.id)"><i class="far fa-trash-alt me-1"></i>Supprimer</a>
+    </td>
+    </tr>
+  
+    
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    
+    <ng-template #content let-modal>
+        <form   #addForm="ngForm">
+           
+            <div class="modal-content">
+                <div class="modal-header">
+                <div class="form-header text-start mb-0">
+                <h4 class="mb-0">Create New Item</h4>
+                </div>
+              
+                </div>
+                <div class="modal-body">
+                <div class="bank-inner-details">
+                <div class="row">
+                <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                <label>Nom</label>
+                <input ngModel name="nom" type="text" class="form-control" placeholder="Article">
+                </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                    <label>Image</label>
+                    <input ngModel name="image" type="file" class="form-control" placeholder="%">
+                    </div>
+                    </div>
+                
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                        <label>Prix Unitaire</label>
+                        <input ngModel name="prixUnitaireHT" type="text" class="form-control" placeholder="$">
+                        </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4">
+                            <div class="form-group">
+                            <label>Quantite</label>
+                            <input ngModel name="quantite" type="number" class="form-control" placeholder="0">
+                            </div>
+                            </div>
+                        <div class="col-lg-4 col-md-4">
+                            <div class="form-group">
+                            <label>Reference</label>
+                            <input ngModel name="reference" type="text" class="form-control" placeholder="PROD01">
+                            </div>
+                            </div>
+                <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                <label>Category</label>
+                <select ngModel name="categorie" class="form-select form-control">
+                <option *ngFor="let categorie of categories | async" [selected]="categorie== null" [ngValue]="categorie"   >{{categorie.nom}}</option>
+               
+                </select>
+                </div>
+    
+                </div>
+                <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                <label>Taxe</label>
+                <select  ngModel name="taxes" class="form-select" multiple aria-label="multiple select ">
+                    <option  *ngFor="let taxe of taxes | async" [selected]="taxe == null" [ngValue]="taxe"    >{{taxe.nom}}</option>
+                    
+                  </select>
+                </div>
+                </div>
+           
+                <div class="col-lg-12 col-md-12 mb-3">
+                <div class="form-group">
+                <label>Description (Facultatif) </label>
+                <textarea ngModel name="description" class="form-control" placeholder="Add item description"></textarea>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                <div class="modal-footer">
+                <div class="bank-details-btn">
+                <a (click)="modal.close('Save click')" data-bs-dismiss="modal" class="btn bank-cancel-btn me-2">Annuler</a>
+                <a (click)="onAddArticle(addForm)" class="btn bank-save-btn">Confirmer</a>
+                </div>
+                </div>
+                </div>
+        </form>
+      </ng-template>
+    
+    
+    
+    
+    </div>
+    
+    
+ 

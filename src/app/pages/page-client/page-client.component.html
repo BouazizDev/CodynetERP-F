@@ -1,0 +1,68 @@
+<div class="page-wrapper">
+    <div class="content container-fluid">
+    
+    <div class="page-header">
+    <div class="row align-items-center">
+    <div class="col">
+    <h3 class="page-title">Clients</h3>
+    <ul class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/">Acceuil</a>
+    </li>
+    <li class="breadcrumb-item active">Clients</li>
+    </ul>
+    </div>
+    <div class="col-auto">
+    <a routerLink="/add-client" class="btn btn-primary me-1">
+     Ajouter un client
+    </a>
+ 
+    </div>
+    </div>
+    </div>
+    
+    
+    
+    <div class="row">
+    <div class="col-sm-12">
+    <div class="card card-table">
+    <div class="card-body">
+    <div class="table-responsive">
+    <table  class="table table-center table-hover datatable">
+    <thead class="thead-light">
+    <tr>
+    <th>Client</th>
+    <th>Email</th>
+    <th>Téléphone</th>
+    <th>Date de creation</th>
+    <th>Adresse</th>
+    <th class="text-end">Actions</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let client of clients">
+    <tr>
+    <td>
+    <h2 class="table-avatar">
+    <a  class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-02.jpg" alt="User Image"></a>
+    <a >{{client.prenom}} {{client.nom}} <span>{{client.reference}}</span></a>
+    </h2>
+    </td>
+    <td>{{client.email}}</td>
+    <td>{{client.numero}}</td>
+    <td>{{client.website}}</td>
+    <td>{{client.pays}}</td>
+   <!--<td><span class="badge badge-pill bg-success-light">Active</span></td>--> 
+    <td class="text-end">
+    <a  (click)="clientUpdate(client.id!)" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i> Modifier</a>
+    <a (click)="onDeleteClient(client.id!)" class="btn btn-sm btn-white text-danger me-2"><i class="far fa-trash-alt me-1"></i>Supprimer</a>
+    </td>
+    </tr>
+ 
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>

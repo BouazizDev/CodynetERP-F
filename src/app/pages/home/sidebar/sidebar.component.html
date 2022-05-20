@@ -1,0 +1,43 @@
+<div class="sidebar" id="sidebar">
+<div class="sidebar-inner slimscroll">
+<div id="sidebar-menu" class="sidebar-menu">
+<ul>
+<li class="menu-title"><span>Main</span></li>
+<li routerLink="/dashboard" routerLinkActive="active" >
+<a  ><i data-feather="home"></i> <span>Dashboard</span></a>
+</li>
+<li routerLink="/clients" routerLinkActive="active">
+<a ><i data-feather="users"></i> <span>Clients</span></a>
+</li>
+<li routerLink="/articles" routerLinkActive="active">
+    <a ><i data-feather="package"></i> <span>Articles</span></a>
+    </li>
+<li>
+<a ><i data-feather="file-text"></i> <span>Devis</span></a>
+</li>
+<li routerLink="/facture" routerLinkActive="active" class="submenu">
+<a Router (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed">
+    <i data-feather="clipboard"></i> <span> Vente</span><i class="menu-arrow" data-feather="chevron-down"></i></a>
+
+    <div style="margin-left: 35px;" id="collapseExample" [ngbCollapse]="isCollapsed"> 
+        <li ><a class="pt-2 pb-2" >Commande fournisseur</a></li>
+        <li ><a class="pt-2 pb-2"  >facture fournisseur </a></li>        
+    </div>
+    
+</li>
+<li routerLink="/facture" routerLinkActive="active" class="submenu">
+    <a Router (click)="isCollapsed1 = !isCollapsed1" [attr.aria-expanded]="!isCollapsed">
+        <i data-feather="truck"></i> <span> Achat</span><i class="menu-arrow" data-feather="chevron-down"></i></a>
+    
+        <div style="margin-left: 35px;" id="collapseExample" [ngbCollapse]="isCollapsed1"> 
+            <li><a routerLink="/commandeClt" routerLinkActive="active" class="pt-2 pb-2">Commande Client </a></li>
+            <li><a class="pt-2 pb-2">Bon de commande </a></li>
+            <li><a class="pt-2 pb-2">Facture Client </a></li>        
+        
+        </div>
+        
+    </li>
+</ul>
+</div>
+</div>
+</div>
